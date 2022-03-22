@@ -25,7 +25,7 @@ namespace Voxelzator
             {
                 for (int j = 0; j < 10; j++)
                 {
-                    Console.Write(grid[i,j]==0?"⬜️":"⬛️");
+                    Console.Write(grid[i,j]==0?"⬜":"⬛");
                 }
                 Console.WriteLine();
             }
