@@ -10,7 +10,7 @@ namespace Pixelzator
         {
             Console.OutputEncoding = Encoding.Default;
             Solver solver = new Solver();
-            Point[] triangle = new Point[] { new Point(1, 1), new Point(1, 6), new Point(4, 1)};
+            Point[] triangle = new Point[] { new Point(1, 1), new Point(1, 4), new Point(4, 1)};
             var list = solver.CreateListOfRectangles(triangle, 1);
             Console.WriteLine(list.Count);
             

@@ -36,8 +36,8 @@ namespace PixelzatorLibrary
                         {
                             if (secondEdge)
                                 break;
-                            else
-                                secondEdge = true;
+                            
+                            secondEdge = true;
 
                             slaveLinePasser = new LinePasser(triangle[1], triangle[2], step);
                             slaveCube = slaveLinePasser.NextStep();
