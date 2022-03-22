@@ -9,7 +9,7 @@ namespace Voxelzator
         {
             Console.OutputEncoding = Encoding.Default;
             Solver solver = new Solver();
-            Point[] triangle = new Point[] { new Point(0, 0), new Point(2, 6), new Point(4, 1)};
+            Point[] triangle = new Point[] { new Point(1, 1), new Point(1, 6), new Point(4, 1)};
             var list = solver.CreateListOfRectangles(triangle, 1);
             Console.WriteLine(list.Count);
             
