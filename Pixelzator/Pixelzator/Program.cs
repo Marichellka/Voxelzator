@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Text;
+using PixelzatorLibrary;
 
-namespace Voxelzator
+namespace Pixelzator
 {
     class Program
     {
@@ -17,7 +18,7 @@ namespace Voxelzator
             
             foreach (Point cube in list)
             {
-                grid[(int) cube.y, (int) cube.x] = 1;
+                grid[(int) cube.Y, (int) cube.X] = 1;
                 Console.WriteLine(cube);
             }
             

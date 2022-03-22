@@ -3,11 +3,11 @@
     <PropertyGroup>
         <OutputType>Exe</OutputType>
         <TargetFramework>net5.0</TargetFramework>
-        <RootNamespace>Voxelzator</RootNamespace>
+        <RootNamespace>Pixelzator</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Library\Library.csproj" />
+      <ProjectReference Include="..\PixelzatorLibrary\PixelzatorLibrary.csproj" />
     </ItemGroup>
 
 </Project>

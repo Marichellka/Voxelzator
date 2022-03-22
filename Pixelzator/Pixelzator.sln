@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pixelzator", "Pixelzator\Pixelzator.csproj", "{76400B54-07A0-4B10-8BF8-1E6400C5483B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library", "Library\Library.csproj", "{56680DD0-E7CC-43DB-A037-1FF91BAB68E9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PixelzatorLibrary", "PixelzatorLibrary\PixelzatorLibrary.csproj", "{56680DD0-E7CC-43DB-A037-1FF91BAB68E9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

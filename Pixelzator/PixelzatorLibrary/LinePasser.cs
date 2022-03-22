@@ -1,5 +1,5 @@
 ﻿using System;
-using Voxelzator;
+using PixelzatorLibrary;
 
 namespace Library
 {
@@ -18,16 +18,16 @@ namespace Library
             {
                 _currentPoint = start;
                 _lastPoint = finish;
-                _dx = finish.x - start.x;
-                _dy = finish.y - start.y;
+                _dx = finish.X - start.X;
+                _dy = finish.Y - start.Y;
 
-                _xGridStep = finish.x > start.x ? step : -step;
-                _yGridStep = finish.y > start.y ? step : -step;
+                _xGridStep = finish.X > start.X ? step : -step;
+                _yGridStep = finish.Y > start.Y ? step : -step;
 
                 //Should I improve this formula?
-                _xNextBorder = (Math.Round((start.x - _xGridStep / 2) / _xGridStep) + 0.5) * _xGridStep +
+                _xNextBorder = (Math.Round((start.X - _xGridStep / 2) / _xGridStep) + 0.5) * _xGridStep +
                                _xGridStep / 2;
-                _yNextBorder = (Math.Round((start.y - _yGridStep / 2) / _yGridStep) + 0.5) * _yGridStep +
+                _yNextBorder = (Math.Round((start.Y - _yGridStep / 2) / _yGridStep) + 0.5) * _yGridStep +
                                _yGridStep / 2;
             }
 
@@ -38,38 +38,38 @@ namespace Library
 
             public Point? NextStep()
             {
-                if ((_lastPoint.x - _currentPoint.x) * _dx <= Solver.Eps && (_lastPoint.y - _currentPoint.y) * _dy <= Solver.Eps)
+                if ((_lastPoint.X - _currentPoint.X) * _dx <= Solver.Eps && (_lastPoint.Y - _currentPoint.Y) * _dy <= Solver.Eps)
                     return null;
 
                 var returnPoint = new Point(_xNextBorder - _xGridStep / 2, _yNextBorder - _yGridStep / 2);
 
                 if (Math.Abs(_dx) < Solver.Eps)
                 {
-                    _currentPoint.y = _yNextBorder;
+                    _currentPoint.Y = _yNextBorder;
                     _yNextBorder += _yGridStep;
                     return returnPoint;
                 }
                 if (Math.Abs(_dy) < Solver.Eps)
                 {
-                    _currentPoint.x = _xNextBorder;
+                    _currentPoint.X = _xNextBorder;
                     _xNextBorder += _xGridStep;
                     return returnPoint;
                 }
                 
-                double xOffset = LengthTillBorder(_currentPoint.x, _xNextBorder, _dx);
-                double yOffset = LengthTillBorder(_currentPoint.y, _yNextBorder, _dy);
+                double xOffset = LengthTillBorder(_currentPoint.X, _xNextBorder, _dx);
+                double yOffset = LengthTillBorder(_currentPoint.Y, _yNextBorder, _dy);
 
                 if (xOffset < yOffset)
                 {
-                    _currentPoint.x = _xNextBorder;
+                    _currentPoint.X = _xNextBorder;
                     _xNextBorder += _xGridStep;
-                    _currentPoint.y += xOffset * _dy;
+                    _currentPoint.Y += xOffset * _dy;
                 }
                 else
                 {
-                    _currentPoint.y = _yNextBorder;
+                    _currentPoint.Y = _yNextBorder;
                     _yNextBorder += _yGridStep;
-                    _currentPoint.x += yOffset * _dx;
+                    _currentPoint.X += yOffset * _dx;
                 }
 
                 return returnPoint;

@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Library;
-using Voxelzator;
-using Microsoft.CodeAnalysis;
 
-namespace Voxelzator
+namespace PixelzatorLibrary
 {
     public class Solver
     {
@@ -16,7 +14,7 @@ namespace Voxelzator
             List<Point> result = new List<Point>();
 
             //order triangle by x coordinate
-            Array.Sort(triangle, new Comparison<Point>((lhs, rhs) => lhs.x.CompareTo(rhs.x)));
+            Array.Sort(triangle, new Comparison<Point>((lhs, rhs) => lhs.X.CompareTo(rhs.X)));
 
             var mainLinePasser = new LinePasser(triangle[0], triangle[2], step);
             var slaveLinePasser = new LinePasser(triangle[0], triangle[1], step);
@@ -26,10 +24,10 @@ namespace Voxelzator
                  mainCube != null;
                  mainCube = mainLinePasser.NextStep())
             {
-                if (slaveCube != null && ((Point) slaveCube).x < ((Point) mainCube).x)
+                if (slaveCube != null && ((Point) slaveCube).X < ((Point) mainCube).X)
                 {
                     //iterete over shorter(by X axis) line
-                    while (slaveCube != null && ((Point) slaveCube).x < ((Point) mainCube).x)
+                    while (slaveCube != null && ((Point) slaveCube).X < ((Point) mainCube).X)
                     {
                         result.Add((Point) slaveCube);
                         slaveCube = slaveLinePasser.NextStep();
@@ -50,11 +48,11 @@ namespace Voxelzator
                     if (slaveCube != null)
                     {
                         result.Add((Point) slaveCube);
-                        double currentStep = ((Point) mainCube).y < ((Point) slaveCube).y ? step : -step;
-                        for (double y = ((Point) mainCube).y;
-                             Math.Abs(y - ((Point) slaveCube).y) > Eps;
+                        double currentStep = ((Point) mainCube).Y < ((Point) slaveCube).Y ? step : -step;
+                        for (double y = ((Point) mainCube).Y;
+                             Math.Abs(y - ((Point) slaveCube).Y) > Eps;
                              y += currentStep)
-                            result.Add(new Point(((Point) mainCube).x, y));
+                            result.Add(new Point(((Point) mainCube).X, y));
                     }
                 }
 
