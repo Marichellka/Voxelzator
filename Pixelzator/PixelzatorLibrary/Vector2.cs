@@ -6,7 +6,7 @@ namespace PixelzatorLibrary
     {
         public double X { get; private set; }
         public double Y { get; private set;}
-        public double Length { get; }
+        public double Length { get; private set;}
 
         public Vector2(Point v1, Point v2)
         {
@@ -19,6 +19,7 @@ namespace PixelzatorLibrary
         {
             X /= Length;
             Y /= Length;
+            Length = 1;
         }
     }
 }
