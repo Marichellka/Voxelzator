@@ -9,7 +9,7 @@ namespace Library
             private double _count;
             private readonly Vector2 _vector;
 
-            public LinePasser(Point start, Point finish, double step)
+            public LinePasser(Point start, Point finish)
             {
                 _count = (int)Math.Ceiling(Math.Max(Math.Abs(start.X - finish.X),
                     Math.Abs(start.Y - finish.Y))) + 1;

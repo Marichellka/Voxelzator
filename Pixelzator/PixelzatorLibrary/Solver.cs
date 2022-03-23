@@ -9,15 +9,26 @@ namespace PixelzatorLibrary
     {
         public const double Eps = 1e-7;
 
-        public List<Point> CreateListOfRectangles(Point[] triangle, double step = 1)
+        private Point ChangeCoordinateSystem(Point point, double step)
         {
+            return new Point(point.X / step, point.Y / step);
+        }
+        
+        public List<Point> CreateListOfRectangles(Point[] triangle, double step)
+        {
+            // change coordinate system for triangle
+            for (int i = 0; i < triangle.Length; i++)
+            {
+                triangle[i] = ChangeCoordinateSystem(triangle[i], step);
+            }
+            
             List<Point> result = new List<Point>();
 
             //order triangle by x coordinate
             Array.Sort(triangle, new Comparison<Point>((lhs, rhs) => lhs.X.CompareTo(rhs.X)));
 
-            var mainLinePasser = new LinePasser(triangle[0], triangle[2], step);
-            var slaveLinePasser = new LinePasser(triangle[0], triangle[1], step);
+            var mainLinePasser = new LinePasser(triangle[0], triangle[2]);
+            var slaveLinePasser = new LinePasser(triangle[0], triangle[1]);
 
             bool secondEdge = false;
             for (Point? mainCube = mainLinePasser.NextStep(), slaveCube = slaveLinePasser.NextStep();
@@ -39,7 +50,7 @@ namespace PixelzatorLibrary
                             else
                                 secondEdge = true;
 
-                            slaveLinePasser = new LinePasser(triangle[1], triangle[2], step);
+                            slaveLinePasser = new LinePasser(triangle[1], triangle[2]);
                             slaveCube = slaveLinePasser.NextStep();
                         }
                     }
@@ -48,7 +59,7 @@ namespace PixelzatorLibrary
                     if (slaveCube != null)
                     {
                         result.Add((Point) slaveCube);
-                        double currentStep = ((Point) mainCube).Y < ((Point) slaveCube).Y ? step : -step;
+                        double currentStep = ((Point) mainCube).Y < ((Point) slaveCube).Y ? 1 : -1;
                         for (double y = ((Point) mainCube).Y;
                              Math.Abs(y - ((Point) slaveCube).Y) > Eps;
                              y += currentStep)
@@ -58,7 +69,14 @@ namespace PixelzatorLibrary
 
                 result.Add((Point) mainCube);
             }
-
+            
+            // change coordinate system back (up to now, that is not needed)
+            // step = 1 / step;
+            // for (int i = 0; i < result.Count; i++)
+            // {
+            //     result[i] = ChangeCoordinateSystem(result[i], step);
+            // }
+            
             return result.Distinct().ToList();
         }
     }
