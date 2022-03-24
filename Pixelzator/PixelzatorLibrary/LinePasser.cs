@@ -11,11 +11,17 @@ namespace Library
 
             public LinePasser(Point start, Point finish)
             {
-                _count = (int)Math.Ceiling(Math.Max(Math.Abs(start.X - finish.X),
-                    Math.Abs(start.Y - finish.Y))) + 1;
-
                 _vector = new Vector2(start, finish);
                 _vector.Normalize();
+                
+                int countX = 0;
+                if (_vector.X != 0.0)
+                    countX = (int) Math.Ceiling(Math.Abs((start.X - finish.X) / _vector.X));
+                int countY = 0;
+                if (_vector.Y != 0.0)
+                    countY = (int) Math.Ceiling(Math.Abs((start.Y - finish.Y) / _vector.Y));
+
+                _count = Math.Max(countX, countY) + 1;
                 
                 _currentPoint = new Point(start.X - _vector.X, 
                     start.Y - _vector.Y);
