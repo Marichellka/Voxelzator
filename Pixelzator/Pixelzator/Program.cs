@@ -6,12 +6,12 @@ namespace Pixelzator
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             Console.OutputEncoding = Encoding.Default;
-            Solver solver = new Solver();
-            Point[] triangle = new Point[] { new Point(1, 1), new Point(1, 4), new Point(4, 1)};
-            var list = solver.CreateListOfRectangles(triangle, 1);
+            Point[] triangle = new Point[] { new Point(1, 1), new Point(3, 7), new Point(5, 2)};
+            Solver solver = new Solver(triangle);
+            var list = solver.CreateListOfRectangles(1);
             Console.WriteLine(list.Count);
             
             int[,] grid = new int[10, 10];
